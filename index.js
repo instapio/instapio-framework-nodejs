@@ -30,6 +30,7 @@ module.exports = function(app_module, cb) {
         "DATABASE_URL": "mongodb://127.0.0.1:27017/app",
         "CACHE_DRIVER": "local",
         "LOGGER": "appengine",
+        "MONGO_ENTITY_NAMESPACE": "true",
         "CACHE_URL": "redis://127.0.0.1:6379"
     };
     if (app_module === undefined || app_module == null) {
