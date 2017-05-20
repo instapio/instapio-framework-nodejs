@@ -1,0 +1,49 @@
+{
+  "name": "instapio-apps-framework",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Parham Beheshti <parham@instapio.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/instapio/instapio-apps-framework",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-cookies": "^1.5.8",
+    "angular-material": "^1.1.1",
+    "angular-material-icons": "^0.7.1",
+    "angular-messages": "^1.5.8",
+    "angular-resource": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "angular-sanitize": "^1.5.8",
+    "angular-translate": "^2.12.1",
+    "angular-translate-storage-cookie": "^2.12.1",
+    "async": "^2.0.1",
+    "highcharts-ng": "^0.0.12",
+    "highcharts": "^4.2.7",
+    "jquery": "^3.1.1",
+    "jquery-migrate": "^3.0.0",
+    "moment": "^2.15.1",
+    "numeral": "^1.5.3",
+    "font-awesome": "fontawesome#^4.6.3",
+    "jquery.cookie": "^1.4.1",
+    "raven-js": "ravenjs#^3.7.0",
+    "angular-google-maps": "^2.4.0",
+    "chroma-js": "^1.1.1",
+    "underscore": "^1.8.3",
+    "angular-simple-logger": "^0.1.7",
+    "lf-ng-md-file-input": "^1.4.8",
+    "angular-stripe-checkout": "^5.1.0",
+    "mdi": "^1.7.22",
+    "angular-leaflet-directive": "^0.10.0",
+    "socket.io": "^1.7.2",
+    "angular-ui-ace": "bower"
+  }
+}
