@@ -12,6 +12,8 @@ var database = {
     load: function(req, env_name, kind, entity_id, cb) {
         MongoClient.connect(global.config.DATABASE_URL, function(err, db) {
             if (err) return cb(err);
+            var colname = env_name + kind;
+            if (global.config.MONGO_ENTITY_NAMESPACE == false || global.config.MONGO_ENTITY_NAMESPACE == "false") var colname = kind;
             db.collection(env_name + kind, function(err, collection) {
                 if (err) return cb(err);
                 collection.findOne({ "_id": entity_id }, function(err, item) {
@@ -26,7 +28,9 @@ var database = {
     save: function(req, env_name, kind, entity_id, entity, cb) {
         MongoClient.connect(global.config.DATABASE_URL, function(err, db) {
             if (err) return cb(err);
-            db.collection(env_name + kind, function(err, collection) {
+            var colname = env_name + kind;
+            if (global.config.MONGO_ENTITY_NAMESPACE == false || global.config.MONGO_ENTITY_NAMESPACE == "false") var colname = kind;
+            db.collection(colname, function(err, collection) {
                 if (err) return cb(err);
                 collection.findOneAndUpdate({ "_id": entity_id }, { '$set': entity }, { upsert: true, safe: false }, function(err, item) {
                     if (err) return cb(err);
@@ -58,7 +62,9 @@ var database = {
         req.debug(find_query);
         MongoClient.connect(global.config.DATABASE_URL, function(err, db) {
             if (err) return cb(err);
-            db.collection(env_name + kind, function(err, collection) {
+            var colname = env_name + kind;
+            if (global.config.MONGO_ENTITY_NAMESPACE == false || global.config.MONGO_ENTITY_NAMESPACE == "false") var colname = kind;
+            db.collection(colname, function(err, collection) {
                 if (err) return cb(err);
                 collection.find(find_query).toArray(function(err, entities) {
                     req.debug("Entities:");
