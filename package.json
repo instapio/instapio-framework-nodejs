@@ -1,0 +1,46 @@
+{
+    "name": "instapio",
+    "version": "1.0.0",
+    "description": "Instapio Node.JS Application Development Framework",
+    "main": "index.js",
+    "scripts": {
+        "start": "node example/docker/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/instapio/instapio-framework-nodejs.git"
+    },
+    "author": "Parham Beheshti <parham@instapio.com",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/instapio/instapio-framework-nodejs/issues"
+    },
+    "homepage": "https://github.com/instapio/instapio-framework-nodejs#readme",
+    "directories": {
+        "example": "example"
+    },
+    "dependencies": {
+        "async": "^2.1.4",
+        "body-parser": "^1.16.1",
+        "bower": "^1.8.0",
+        "chroma": "0.0.1",
+        "cookie-parser": "^1.4.3",
+        "cron": "^1.2.1",
+        "ejs": "^2.5.6",
+        "errorhandler": "^1.5.0",
+        "express": "^4.14.1",
+        "google-cloud": "^0.47.0",
+        "jwt-simple": "^0.5.1",
+        "moment": "^2.17.1",
+        "mongo": "^0.1.0",
+        "node-cache": "^4.1.1",
+        "numeral": "^2.0.4",
+        "passport": "^0.3.2",
+        "passport-oauth": "^1.0.0",
+        "redis": "^2.7.1",
+        "request": "^2.79.0",
+        "response-time": "^2.3.2",
+        "serve-static": "^1.11.2"
+    }
+}

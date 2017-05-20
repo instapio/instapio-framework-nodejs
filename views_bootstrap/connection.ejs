@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        <%=config.INSTAPIO_APPLICATION_NAME%>
+    </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.9/css/bootstrap-material-design.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.9/css/ripples.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.0/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.9/js/ripples.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.9/js/material.min.js"></script>
+    <script src="<%=INSTAPIO_SDKJS%>"></script>
+</head>
+<!-- FOR HTML/CSS TRICKS OF THIS TEMPLATE SEE http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html -->
+<body style="background-color:#FFF;">
+    <div class="container-fluid noshadow">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <form method="PUT" action="/connection" class="form" id="form_settings">
+                <%for(var i=0;i<form.length;i++){%>
+                    <%if(form[i].field_type!=="options"){%>
+                        <label for="<%=form[i].name%>" class="control-label"><%=form[i].title%></label>
+                        <input type="<%=form[i].field_type%>" name="<%=form[i].name%>" id="<%=form[i].name%>" value="<%=entity[form[i].name]%>" class="form-control">
+                    <%}%>
+                    <%if(form[i].field_type==="options"){%>
+                        <label for="<%=form[i].name%>" class="control-label"><%=form[i].title%></label>
+                        <select name="<%=form[i].name%>" id="<%=form[i].name%>" value="<%=entity[form[i].name]%>" class="form-control">
+                            <%for(var j=0;j<form[i].options.length;j++){%>
+                                <option <%if(form[i].options[j].value==entity[form[i].name]){%>selected<%}%> value="<%=form[i].options[j].value%>"><%=form[i].options[j].name%></option>
+                            <%}%>
+                        </select>
+                    <%}%>
+                <%}%>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+    $.material.init();
+    window.onload = function(e){
+        instapio.init();
+        instapio.OnSave=function(cb){
+            console.log("ONSAVE OVERRIDE");
+            $.ajax({
+                type:"PUT",
+                url:"/connection?jwt=<%=TOKEN%>",
+                data:$("#form_settings").serialize(),
+                success:function(data){
+                    console.log("Received PUT");
+                    console.log(data);
+                    cb();
+                }
+            });
+            
+        };
+    }
+    $(document).ready(function(){
+        $("input").change(function(){
+            console.log("Changed");
+            $.ajax({
+                type:"POST",
+                url:"/connection/validate?jwt=<%=TOKEN%>",
+                data:$("#form_settings").serialize(),
+                success:function(data){
+                    console.log("Received Validation");
+                    console.log(data);
+                    if(data.success){
+                        $('body').append(
+                            '<div class="alert alert-dismissible alert-success"> \
+                            <button type="button" class="close" data-dismiss="alert">×</button> \
+                            <strong>Well done!</strong> Settings are correct. \
+                            </div>')
+                    }
+                }
+            });
+        })
+    });
+    </script>
+</body>
+</html>

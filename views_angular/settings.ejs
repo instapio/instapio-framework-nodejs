@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-strict-di dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        <%=config.INSTAPIO_APPLICATION_NAME%>
+    </title>
+    <meta name="description" content="config.INSTAPIO_APPLICATION_NAME">
+    <meta name="author" content="config.INSTAPIO_APPLICATION_NAME">
+    <meta name="keyword" content="config.INSTAPIO_APPLICATION_NAME">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/assets/css/angular.css" rel="stylesheet">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="shortcut icon" href="//dashboard.instap.io/assets/ico/favicon.png">
+    <style>
+        .export_table {
+            font-size: 0.7em;
+            width: 100%;
+            border: none;
+        }
+        
+        .export_table tr {
+            height: 3em;
+        }
+        
+        .export_table td {
+            margin: 2px;
+            border: none;
+        }
+        
+        th.rotate {
+            height: 140px;
+            white-space: nowrap;
+            width: 40px;
+        }
+        
+        th.rotate > div {
+            transform: translate(20px, 52px) rotate(270deg);
+            width: 30px;
+        }
+        
+        th.rotate > div > span {
+            border-bottom: 1px solid #ccc;
+            padding: 5px 10px;
+        }
+        
+        .export_table tr:nth-child(even) {
+            background: #EEE;
+        }
+        
+        .export_table tr td:first-child {
+            font-weight: bolder;
+        }
+        .page-layout {
+            height: auto;
+        }
+        
+        body {
+            height: auto;
+            background-color:#FFF;
+        }
+        md-content{
+            background-color:#fff;
+        }
+        #main {
+            height: auto;
+        }
+        
+        #content {
+            height: auto;
+        }
+    </style>
+    <script>
+        var page_data=<%-JSON.stringify(locals._locals);%>
+    </script>
+</head>
+<body layout="column">
+    <md-content id="content">
+        <div class="page-layout" layout="row">
+            <md-content ng-controller="SettingsCtrl" class="content" style="min-height:500px" flex ms-scroll>
+                <div layout="column">
+                    <md-input-container ng-repeat="field in form" flex="100">
+                        <label>{{field.title}}</label>
+                        <md-select ng-if="field.field_type=='options'" ng-model="entity[field.name]">
+                            <md-option ng-repeat="opt in field.options" value="{{opt.value}}">{{opt.name}}</md-option>
+                        </md-select>
+                        <input  ng-if="field.field_type!=='options'" type="{{field.field_type}}" ng-model="entity[field.name]"/>
+                    </md-input-container>
+                </div>
+            </md-content>
+        </div>
+    </md-content>
+    <script src="<%=INSTAPIO_SDKJS%>"></script>
+    <script src="/assets/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/assets/bower_components/jquery-migrate/jquery-migrate.js"></script>
+    <script src="/assets/bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script src="/assets/bower_components/async/dist/async.js"></script>
+    <script src="/assets/bower_components/moment/moment.js"></script>
+    <script src="/assets/bower_components/numeral/numeral.js"></script>
+    <script src="/assets/bower_components/highcharts/highcharts.js"></script>
+    <script src="/assets/bower_components/highcharts/highcharts-more.js"></script>
+    <script src="/assets/bower_components/chroma-js/chroma.js"></script>
+    <script src="/assets/bower_components/underscore/underscore.js"></script>
+
+    <script src="/assets/bower_components/angular/angular.js"></script>
+    <script src="/assets/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/assets/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/assets/bower_components/angular-route/angular-route.js"></script>
+    <script src="/assets/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="/assets/bower_components/angular-messages/angular-messages.js"></script>
+    <script src="/assets/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/assets/bower_components/angular-material/angular-material.js"></script>
+    <script src="/assets/bower_components/angular-material-icons/angular-material-icons.js"></script>
+    <script src="/assets/bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+    <script src="/assets/js/angular/app.js"></script>
+    <script src="/assets/js/angular/controllers/connection.js"></script>
+    <script src="/assets/js/angular/controllers/dashboard.js"></script>
+    <script src="/assets/js/angular/controllers/settings.js"></script>
+</body>
+</html>

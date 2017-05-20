@@ -1,0 +1,35 @@
+# Copyright (C) 2013-2017 Instapio Inc - All Rights Reserved
+# Unauthorized copying of this file, via any medium is strictly prohibited
+# Proprietary and confidential
+# http://instap.io info@instapio.com @instapio
+
+runtime: nodejs
+env: flex
+api_version: 1
+threadsafe: true
+
+resources:
+  cpu: .5
+  memory_gb: .5
+  disk_size_gb: 10
+  
+health_check:
+  enable_health_check: false
+  check_interval_sec: 5
+  timeout_sec: 4
+  unhealthy_threshold: 2
+  healthy_threshold: 2
+  restart_threshold: 60
+
+manual_scaling:
+  instances: 1
+
+skip_files:
+- ^(.*/)?.*/node_modules/.*$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\.less$
+- ^(.*/)?\.map$
+- ^node_modules(.*/)?\.*$
+- ^.vscode(.*/)?\.*$
+- ^assets/img/icons/aignore(.*/)?\.*$
