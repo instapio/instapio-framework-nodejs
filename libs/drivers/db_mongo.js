@@ -14,7 +14,7 @@ var database = {
             if (err) return cb(err);
             var colname = env_name + kind;
             if (global.config.MONGO_ENTITY_NAMESPACE == false || global.config.MONGO_ENTITY_NAMESPACE == "false") var colname = kind;
-            db.collection(env_name + kind, function(err, collection) {
+            db.collection(colname, function(err, collection) {
                 if (err) return cb(err);
                 collection.findOne({ "_id": entity_id }, function(err, item) {
                     if (item === undefined) return cb(null);
