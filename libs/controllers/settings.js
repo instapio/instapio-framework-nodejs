@@ -108,7 +108,7 @@ router.put('/', function(req, res, next) {
 });
 router.post('/validate/', function(req, res, next) {
     if (global.app !== undefined && global.app.account !== undefined && global.app.account.validate !== undefined) {
-        global.app.account.validate(req.body, function(err) {
+        global.app.account.validate(req, req.body, function(err) {
             if (err) {
                 res.send({ success: false, error: err });
             } else {
