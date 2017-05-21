@@ -1,6 +1,6 @@
 {
     "name": "instapio",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Instapio Node.JS Application Development Framework",
     "main": "index.js",
     "scripts": {
