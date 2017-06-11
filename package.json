@@ -1,9 +1,10 @@
 {
     "name": "instapio",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Instapio Node.JS Application Development Framework",
     "main": "index.js",
     "scripts": {
+        "postinstall": "bower install --allow-root",
         "start": "node example/docker/index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
